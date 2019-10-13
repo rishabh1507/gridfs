@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+    img {
+        width:100%;
+    }
+    
+    
+    </style>
+
+
+    </head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6  m-auto">
+                <!-- <h3>hi</h3> -->
+                <h1 class="text-center display-4 ny-4">Hello MongoDb</h1>
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="custom-file mb-3">
+                        <input type="file" name="file" id="file" class="custom-file-input">
+                        <label for="file" class="custom-file-label">Choose file</label>
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-block">
+                </form>
+                <hr>
+                <% if(files){ %>
+                <% files.forEach(function(file) { %>
+                <div class="card card-body mb-3">
+                    <% if (file.isImage) { %>
+                    <img src="image/<%= file.filename %>"  alt="">
+                    <% } else { %>
+                    <%= file.filename %>
+                    <%    }   %>
+                    <form  method="POST"action="/files/<%= file._id %>?_method=DELETE">
+                        <button class="btn btn-danger btn-block mt-4"> Delete</button>
+                    </form>
+
+
+
+
+                </div>
+                <% })  %>
+                <% } else { %>
+                <p>No files to show </p>
+                <%    }  %>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <script src="" async defer></script> -->
+</body>
+
+</html>
